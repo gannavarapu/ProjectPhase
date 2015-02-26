@@ -9,7 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.example.hp.phase1.user;
+import com.example.hp.phase1.UserObj;
 
 public class DB extends SQLiteOpenHelper {
 
@@ -43,7 +43,7 @@ public class DB extends SQLiteOpenHelper {
         // create fresh books table
         this.onCreate(db);
     }
-    public void addUser(user user){
+    public void addUser(UserObj user){
         //for logging
       //  Log.d("addBook", book.toString());
 
@@ -78,9 +78,9 @@ public class DB extends SQLiteOpenHelper {
 
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS frnsMobile");
+       // db.execSQL("DROP TABLE IF EXISTS frnsMobile");
         // 2. create ContentValues to add key "column"/value
-this.onCreate(db);
+//this.onCreate(db);
         ContentValues values = new ContentValues();
         values.put("usermobile",mobilenum);
         values.put("mobilenum1",mobilenumbersObj.mobilenum1);
@@ -149,7 +149,7 @@ catch(Exception e)
         // 3. if we got results get the first one
         if (cursor != null)
             cursor.moveToFirst();
-        mobilenumbersObj mobilenumbersObj=new mobilenumbersObj(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+        mobilenumbersObj mobilenumbersObj=new mobilenumbersObj(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3));
         return (mobilenumbersObj);
     }
 }

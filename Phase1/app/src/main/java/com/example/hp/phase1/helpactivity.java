@@ -32,7 +32,7 @@ public class helpactivity extends ActionBarActivity implements LocationListener 
     Button greenBtn;
     // flag for network status
     boolean isNetworkEnabled = false;
-    String[] numberlist={};
+    String[] numberlist={"","","","","",""};
     DB db= new DB(this);
 
     /** Called when the activity is first created. */
@@ -108,7 +108,7 @@ public class helpactivity extends ActionBarActivity implements LocationListener 
 
             String phoneNo = numberlist[i];
             String message = "Help!!!";
-            if(phoneNo!= null) {
+            if(phoneNo!= null&&phoneNo!="") {
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
                     StringBuffer smsBody = new StringBuffer();
@@ -172,7 +172,7 @@ public class helpactivity extends ActionBarActivity implements LocationListener 
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        setTitle("Login Details");
+        setTitle("Emergency Help");
 
 
         getMenuInflater().inflate(R.menu.menu_main, menu);

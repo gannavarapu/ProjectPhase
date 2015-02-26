@@ -98,7 +98,7 @@
     <Button
         android:layout_width="300px"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="Submit"
         android:background="@drawable/mybutton"
         android:id="@+id/next"
         android:layout_alignParentBottom="true"

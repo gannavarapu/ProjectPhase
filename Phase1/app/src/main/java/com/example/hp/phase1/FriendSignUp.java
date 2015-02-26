@@ -69,7 +69,7 @@ public class FriendSignUp extends ActionBarActivity {
                 String mobilenum=prefs.getString("userid","5187635916");
                 mobilenumbersObj  mobilenumbersObj= new mobilenumbersObj(dbmobilenm[0],dbmobilenm[1],dbmobilenm[2],dbmobilenm[3]);
                 db.addPhnum(mobilenumbersObj,mobilenum);
-                Intent intent = new Intent(context,helpactivity.class);
+                Intent intent = new Intent(context,MainActivity.class);
                 startActivity(intent);
             }
         });

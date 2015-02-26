@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.Toast;
 
 
 public class SignUpPage extends ActionBarActivity {
@@ -28,6 +28,7 @@ public class SignUpPage extends ActionBarActivity {
     private EditText password;
     private EditText renterPassword;
     final DB db = new DB(this);
+    String validationMessage;
 
 
     @Override
@@ -64,10 +65,21 @@ public class SignUpPage extends ActionBarActivity {
                                         String code = (postalCode.getText().toString());
                                         String pwd = password.getText().toString();
                                         String repwd = renterPassword.getText().toString();
-                                        user user= new user(fn,ln,num,email,add1,add2,ct,st,"USA",code,pwd);
+                                        UserObj user= new UserObj(fn,ln,num,email,add1,add2,ct,st,"USA",code,pwd,repwd);
                                         db.addUser(user);
-                Intent intent = new Intent(context, FacebookTwitterPage.class);
-                startActivity(intent);
+                                        Validate validate=new Validate();
+                                           validationMessage=validate.SignUpPage(user);
+                                            if(!validationMessage.equalsIgnoreCase("ok"))
+                                           {
+                                    Toast.makeText(com.example.hp.phase1.SignUpPage.this,validationMessage, Toast.LENGTH_LONG).show();
+                                            	      }
+                                                                                else
+                                                                                {
+                                                            Intent intent = new Intent(context, FacebookTwitterPage.class);
+
+                                            	                startActivity(intent);
+
+                                            	                                        }
 
             }
         });

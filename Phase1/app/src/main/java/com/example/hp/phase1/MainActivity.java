@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -21,6 +21,8 @@ public class MainActivity extends ActionBarActivity {
     private EditText mob;
     private EditText password;
     final DB db= new DB(this);
+    String ValidateMessage;
+
 
     public void onCreate(Bundle savedInstanceState) {
         final Context context = this;
@@ -39,20 +41,28 @@ public class MainActivity extends ActionBarActivity {
                   public void onClick(View v) {
                    String mobile = mob.getText().toString();
                    String Pwd = password.getText().toString();
+
                    String password= db.checkUser(mobile);
-                       if(Pwd.equals(password))
+                       Validate validate = new Validate();
+                       ValidateMessage=validate.MainActivity(mobile,password);
+                                          if (!ValidateMessage.equalsIgnoreCase("ok"))
+                                                   {
+                           	                            Toast.makeText(MainActivity.this, ValidateMessage, Toast.LENGTH_LONG).show();
+                           	                        }
+                           else if(Pwd.equals(password))
+
                        {
 
                            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
                            SharedPreferences.Editor editor = pref.edit();
                            editor.putString("userid",mobile);
                            editor.commit();
-                           Intent intent = new Intent(context, SignUpPage.class);
+                           Intent intent = new Intent(context, helpactivity.class);
                            startActivity(intent);
                        }
                        else
                        {
-
+                           Toast.makeText(context, "Enter valid credentials!!", Toast.LENGTH_LONG).show();
 
                        }
 
